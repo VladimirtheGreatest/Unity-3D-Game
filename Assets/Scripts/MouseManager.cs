@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MouseManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class MouseManager : MonoBehaviour
     public Texture2D target; //cursor for clickable objects like the world
     public Texture2D doorway; // cursor for doorways
     public Texture2D combat; //cursor combat actions
+
+    public EventVector3 OnClickEnvironment;
 
 
     // Update is called once per frame
@@ -30,6 +33,11 @@ public class MouseManager : MonoBehaviour
                 Cursor.SetCursor(target, new Vector2(16, 16), CursorMode.Auto);
             }
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                OnClickEnvironment.Invoke(hit.point);
+            }
+
 
         }
         else
@@ -38,3 +46,7 @@ public class MouseManager : MonoBehaviour
         }
     }
 }
+
+[System.Serializable]
+
+public class EventVector3 : UnityEvent<Vector3> { }
