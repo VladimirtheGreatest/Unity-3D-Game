@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class NPCController : MonoBehaviour
 {
     public float patrolTime = 10f;
     public float aggroRange = 10f;
     public Transform[] waypoints;
 
-   private int index;
-   private float speed, agentSpeed;
-   private Transform player;
+    private int index;
+    private float speed, agentSpeed;
+    private Transform player;
 
-   // Animator anim;
-   private NavMeshAgent agent;
+    // Animator anim;
+    private NavMeshAgent agent;
 
     private void Awake()
     {
         //anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        if (agent !=null)
+        if (agent != null)
         {
             agentSpeed = agent.speed;
         }
@@ -40,7 +40,7 @@ public class NewBehaviourScript : MonoBehaviour
     }
     void Tick()
     {
-        agent.destination = waypoints[index].position;  
+        agent.destination = waypoints[index].position;
     }
 
 }
